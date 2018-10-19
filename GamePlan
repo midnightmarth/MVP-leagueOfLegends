@@ -1,0 +1,51 @@
+My MVP Project.
+
+What is my app?
+A league of legends single page app that gets the users summoner name from the LoL API and posts some data.
+IE: Champions they played the most
+their rank 
+their level
+free champions for the week.
+(This is a good start. MAybe if I can find build api, ill use that)
+
+
+Client:
+
+-'login' page: Sends the server your summoner name to then retrieve info about your profile.
+-
+
+
+-Server:
+handles get/post requests
+
+--Get requests:
+  GET summoner JSON from Database
+  GET champion names, info, pictures from Database
+  
+--POST requests:
+  POST summoner JSON to Database
+  POST champion names, info, pictures from Database
+
+
+--Database: 
+  Collections:
+    Champions
+    SummonerNames
+
+    Holds:
+    Champion pictures,
+    previous summoner info
+
+--technologies:
+  FrontEnd: 
+  React
+
+  BackEnd:
+    Node.js'
+    MongoDB
+    WebPack
+    MiddleWare:
+      axios
+      Mongoose
+      Express
+      body-parser
