@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Search from './search.jsx';
 import axios from 'axios';
 
 
@@ -7,16 +8,20 @@ class App extends React.Component {
 
   constructor(props){
     super(props);
+    this.state = {
+      summoner: ''
+    }
   }
 
-  search(summName){
-
+  search(summ){
+    console.log(summ)
   }
 
   render(){
     return<div>
-      <h1 id='title' style={{textalign: center}}>Enter Summoner Name</h1>
-      <input></input>
+      <h1>League of Intel!</h1>
+      <Search onSearch={this.search.bind(this)} />
+      {/* <button onClick={this.search}>Search Summoner Name</button> */}
     </div>
   }
 }
