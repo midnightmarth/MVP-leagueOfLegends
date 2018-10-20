@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Search from './search.jsx';
+import Search from './Search.jsx';
+import PriorSumms from './PriorSumms.jsx'
 import axios from 'axios';
 
 
@@ -11,18 +12,29 @@ class App extends React.Component {
     this.state = {
       summoner: ''
     }
+    this.summNames= []
   }
 
   search(summ){
-    console.log(summ)
+    console.log('Searching for: ',summ)
+    const getPriorSumms = async () => {
+      try{
+      return await axios.get('http://localhost:1128/newSumm', {params: summ})
+      
+      }catch(err){
+        console.log('err when Searching for summoner!:', err);
+      }
+    }
+  getPriorSumms();
   }
 
   render(){
-    return<div>
+    return (<div>
       <h1>League of Intel!</h1>
       <Search onSearch={this.search.bind(this)} />
       {/* <button onClick={this.search}>Search Summoner Name</button> */}
-    </div>
+      <PriorSumms />
+    </div>)
   }
 }
 

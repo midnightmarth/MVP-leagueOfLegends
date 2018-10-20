@@ -16,14 +16,16 @@ class Search extends React.Component{
     })
   }
 
-  search(){
+  search(e){
     this.props.onSearch(this.state.summoner);
+    e.preventDefault();
   }
+  
   render(){
-    return<div>
-      Enter Summoner Name<input value={() => this.props.onSearch(this.state.summoner)} onChange={this.onChange} />
-      <button onClick={this.search}> Search Summoner </button>
-    </div>
+    return (<form>
+      Enter Summoner Name<input value={this.state.value} onChange={this.onChange} />
+      <button type='submit' onClick={this.search} > Search Summoner </button>
+    </form>)
   }
 }
 export default Search;
