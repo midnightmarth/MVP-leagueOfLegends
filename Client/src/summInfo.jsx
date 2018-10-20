@@ -1,5 +1,4 @@
 import React from 'react'
-import Comment from './comment.jsx'
 import axios from 'axios';
 
 class summInfo extends React.Component{
@@ -17,6 +16,7 @@ class summInfo extends React.Component{
         <div>
           <div>Summoner Name: {this.props.sumData[0].name}</div>
           <div>Level: {this.props.sumData[0].summonerLevel}</div>
+          <div></div>
         </div>
         
       )

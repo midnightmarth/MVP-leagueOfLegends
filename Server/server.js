@@ -2,7 +2,7 @@ const express = require("express");
 const axios = require("axios");
 const bodyParser = require("body-parser");
 const db = require("./database");
-const key = require('../config').TOKEN;
+const key = require("../config").TOKEN;
 
 let app = express();
 
@@ -30,7 +30,7 @@ app.get("/newSumm", function(req, res) {
       console.log("in server.js, from Database", result);
       res.json(result);
     } else {
-      console.log("didnt find in server");
+      console.log("didnt find in Database..");
       //console.log("apiKey: ",key)
       axios
         .get(
@@ -38,11 +38,18 @@ app.get("/newSumm", function(req, res) {
         )
         .then(result => {
           db.saveSumm(result.data);
-          res.end(db.findSumm(summ));
-        }).catch(err => {
-          console.log("Someting went wrong when contacting API",err)
-          res.end()
+          db.findSumm(result.data.name).then(result1 => {
+            console.log(
+              "SERVER: logging result when finding after posting",
+              result1
+            );
+            res.json(result1);
+          });
         })
+        .catch(err => {
+          console.log("Someting went wrong when contacting API", err);
+          res.end();
+        });
     }
   });
 });
