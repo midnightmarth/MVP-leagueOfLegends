@@ -1,4 +1,5 @@
 import React from 'react';
+import SummInfo from './summInfo.jsx'
 
 class Search extends React.Component{
   constructor(props){
@@ -6,7 +7,7 @@ class Search extends React.Component{
     this.search = this.search.bind(this);
     this.onChange = this.onChange.bind(this);
     this.state={
-      summoner: ''
+      summoner: '',
     }
   }
   
@@ -18,6 +19,7 @@ class Search extends React.Component{
 
   search(e){
     this.props.onSearch(this.state.summoner);
+    this.setState({hasSearched: true})
     e.preventDefault();
   }
   
@@ -25,6 +27,7 @@ class Search extends React.Component{
     return (<form>
       Enter Summoner Name<input value={this.state.value} onChange={this.onChange} />
       <button type='submit' onClick={this.search} > Search Summoner </button>
+      <SummInfo sumData={this.props.sumData} hasSearched={this.props.hasSearched}/>
     </form>)
   }
 }
