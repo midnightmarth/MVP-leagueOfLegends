@@ -2,6 +2,7 @@ const express = require("express");
 const axios = require("axios");
 const bodyParser = require("body-parser");
 const db = require("./database");
+const key = require('../config').TOKEN;
 
 let app = express();
 
@@ -25,19 +26,23 @@ app.get("/newSumm", function(req, res) {
   const summ = req.query["0"];
 
   db.findSumm(summ).then(result => {
-    if (result !== []) {
-      console.log("in server, from Database", result);
-      res.end(result);
+    if (result.length !== 0) {
+      console.log("in server.js, from Database", result);
+      res.json(result);
     } else {
       console.log("didnt find in server");
+      //console.log("apiKey: ",key)
       axios
         .get(
-          `https://na1.api.riotgames.com//lol/summoner/v3/summoners/by-name/${summ}?api_key=${module.exports.TOKEN}`
+          `https://na1.api.riotgames.com//lol/summoner/v3/summoners/by-name/${summ}?api_key=${key}`
         )
         .then(result => {
           db.saveSumm(result.data);
-          res.end(JSON.stringify(result.data));
-        });
+          res.end(db.findSumm(summ));
+        }).catch(err => {
+          console.log("Someting went wrong when contacting API",err)
+          res.end()
+        })
     }
   });
 });

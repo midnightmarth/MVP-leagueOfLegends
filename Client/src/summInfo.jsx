@@ -12,10 +12,11 @@ class summInfo extends React.Component{
 
   render(){
     if(this.props.hasSearched){
+      console.log('prop Data: ',this.props.sumData[0].name)
       return (
         <div>
-          <div>Summoner Name: {this.props.sumData.data.name}</div>
-          <div>Level: {this.props.sumData.data.summonerLevel}</div>
+          <div>Summoner Name: {this.props.sumData[0].name}</div>
+          <div>Level: {this.props.sumData[0].summonerLevel}</div>
         </div>
         
       )

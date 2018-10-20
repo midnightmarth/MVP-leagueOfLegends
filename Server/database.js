@@ -26,7 +26,7 @@ let commentInfo = new mongoose.Schema({
 let summModel = mongoose.model('summonerInfo', summonerInfo);
 
 let findSumm = (name) => {
-  //console.log('trying to find name:',name,' in db')
+  console.log('trying to find name:',name,' in db')
   return summModel.find({name: name})
 }
 
