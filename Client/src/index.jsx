@@ -15,17 +15,14 @@ class App extends React.Component {
     this.summNames= []
   }
 
-  search(summ){
+  async search(summ){
     console.log('Searching for: ',summ)
-    const getPriorSumms = async () => {
       try{
       return await axios.get('http://localhost:1128/newSumm', {params: summ})
       
       }catch(err){
         console.log('err when Searching for summoner!:', err);
       }
-    }
-  getPriorSumms();
   }
 
   render(){
